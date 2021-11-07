@@ -2,57 +2,82 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class App {
+    public static class Datos {
+        public static final int MAX = 1000000;
+        private static final Random RANDOM;
+        private static final int[] datosAleatorios;
+        private static final int[] datosPrueba;
+        private final int N;
+        static {
+            RANDOM = new Random();
+            datosAleatorios = new int[MAX];
+            for (int i = 0; i < MAX; i++)
+                datosAleatorios[i] = RANDOM.nextInt();
+            datosPrueba = new int[MAX];
+        }
+        
+        public Datos(int N) {
+            this.N = N;
+            int n0 = RANDOM.nextInt(MAX - N);
+            System.arraycopy(datosAleatorios, n0, datosPrueba, 0, N);
+        }
+        
+        public void algoritmo() {
+            Arrays.sort(datosPrueba, 0, N);
+        }
+
+        public void insercionDirecta(){
+            int A[] = datosPrueba;
+            int p, j;
+            int aux;
+            for (p = 1; p < A.length; p++){ // desde el segundo elemento hasta
+                      aux = A[p];           // el final, guardamos el elemento y
+                      j = p - 1;            // empezamos a comprobar con el anterior
+                      while ((j >= 0) && (aux < A[j])){ // mientras queden posiciones y el                                
+                                                        // valor de aux sea menor que los
+                                     A[j + 1] = A[j];   // de la izquierda, se desplaza a
+                                     j--;               // la derecha
+                      }
+                      A[j + 1] = aux;       // colocamos aux en su sitio
+            }
+        }
+    
+        @Override
+        public String toString() {
+            return "Datos [N=" + N + "]";
+        }
+        }
+    
     public static void main(String[] args) {
         List<String> list = new ArrayList<String>();
 
-        String list2[] = { "5099023", "10049849", "27268133", "59154985", "124892599", "342082804", "729927088", "1546868027", "4161772150", "8817641280", "18540020616", "49852784330" };
-
-// int o = 0;
-// for (String string : list1) {
-
-//     System.out.println(string+"\n"+list2[o]+"\n");
-//     o++;
-// }
-
-
-        // System.out.println(list); // prints "[1, 2, 3]"
-        // System.out.println(list1); // prints "[1, 2, 3]"
         for (int i = 0; i < 500; i++) {
             int N = 100;
             Datos datos = new Datos(N);
             datos.algoritmo();
         }
     
-        int[] tamanos = {100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000,100000,200000,500000};
-        int casos = 1000;
+        int[] tamanos = {100, 200, 300, 400, 500, 600, 700, 800, 1000};
+        int casos = 100;
         long nn = 0;
-        int o= 0;
         for (int N : tamanos) {
             long t0 = System.nanoTime();
             for (int i = 0; i < casos; i++) {
                 Datos datos = new Datos(N);
-                datos.algoritmo();
+                // datos.algoritmo();
+                datos.insercionDirecta();
                 long t2 = System.nanoTime();
                 nn=(t2 - t0);
             }
-            // System.out.printf("%d:%d%n", N, nn);
-            System.out.println(N+"\n"+nn+"\n"+list2[o]+"\n");
-            o++;
-            list.add(N+" "+nn+"\n");
+            list.add(N+" "+nn);
+            System.out.println(N+" "+nn);
 
         }
-        // System.out.printf("%d:%d%n", N, (t2 - t0));
 
-
-        // long nnn = 0;
-
-        // System.out.printf("%d:%d%n", N, nnn);
-
-        // list.add(N+" "+(t2 - t0)+"\n");
-        // nnn = nnn + (t2 - t0);
-
-        // System.out.println(list);
         guardar(list);
 
     }
@@ -70,37 +95,6 @@ public class App {
     }
 
 
-    // public class Logger { 
-    //     public static void log(String message) throws IOException { 
-    //         PrintWriter out = new PrintWriter(new FileWriter("output.txt"), true); 
-    //         out.write(message); 
-    //         out.close(); } 
-    //     }
 
-
-
-
-    // public static void main(String[] args) {
-    //     for (int i = 0; i < 500; i++) {
-    //     int N = 100;
-    //     Datos datos = new Datos(N);
-    //     datos.algoritmo();
-    //     }
-    //     int[] tamanos = {100, 200, 500, 1000, 2000, 5000, 10000};
-    //     int casos = 1000;
-    //     for (int N : tamanos) {
-    //     long t0 = System.currentTimeMillis();
-    //     for (int i = 0; i < casos; i++) {
-    //     Datos datos = new Datos(N);
-    //     datos.algoritmo();
-    //     long t2 = System.currentTimeMillis();
-    //     System.out.printf("N= %6d: %,5dms%n", N, (t2 - t0));
-    //     }
-    //     }
-    // }
-
-
-
-    
 
 }
