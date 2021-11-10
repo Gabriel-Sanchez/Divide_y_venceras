@@ -42,6 +42,7 @@ public class App {
 
         //-----------------------------------------------------------------------------
         public void insercionDirecta(){
+
             int A[] = arregloReducido;
             int p, j;
             int aux;
@@ -55,12 +56,14 @@ public class App {
                       }
                       A[j + 1] = aux;       // colocamos aux en su sitio
             }
+
+            
         }
 
         //-------------------------------------------------------
         public  void quicksort() {
             
-            quicksort(arregloReducido, 0, N);
+            quicksort(arregloReducido, 0, N-1);
 
         }
 
@@ -154,8 +157,9 @@ public class App {
                 Datos datos = new Datos(N);
                 //  datos.algoritmo();
                 // datos.insercionDirecta();
-                 datos.seleccion(); 
+                //  datos.seleccion(); 
                 // datos.burbuja();
+                datos.quicksort();
 
                 long t2 = System.nanoTime();
                 nn=(t2 - t0);
