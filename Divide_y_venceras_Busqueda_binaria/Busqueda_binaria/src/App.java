@@ -73,7 +73,7 @@ public class App {
         
 
         public void algoritmo(){
-            searchBinary(arregloReducido, 0);
+            searchBinary(arregloReducido,0 );
         }
         //-----------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ public class App {
     
         public static int searchBinary(int A[], int start , int end , int x){
             if (start > end || start < 0 || end >= A.length ){
-                System.out.println("Error: indice fuera del rango");
+                // System.out.println("Error: indice fuera del rango");
                 return -1;
             }
     

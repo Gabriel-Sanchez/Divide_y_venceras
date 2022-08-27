@@ -148,18 +148,18 @@ public class App {
             datos.algoritmo();
         }
     
-        int[] tamanos = {100, 200, 300, 400, 500, 600, 700, 800, 1000};
-        int casos = 1000;
+        int[] tamanos = {100, 200, 300, 400, 500, 600, 700, 800, 1000, 2000,5000, 10000, 20000, 50000 ,100000};
+        int casos = 1000 ;
         long nn = 0;
         for (int N : tamanos) {
             long t0 = System.nanoTime();
             for (int i = 0; i < casos; i++) {
                 Datos datos = new Datos(N);
                 //  datos.algoritmo();
-                // datos.insercionDirecta();
+                datos.insercionDirecta();
                 //  datos.seleccion(); 
                 // datos.burbuja();
-                datos.quicksort();
+                // datos.quicksort();
 
                 long t2 = System.nanoTime();
                 nn=(t2 - t0);

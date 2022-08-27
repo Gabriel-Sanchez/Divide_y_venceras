@@ -39,7 +39,7 @@ public class App {
             datos.algoritmo();
         }
     
-        int[] tamanos = {100, 200, 300, 400, 500, 600, 700, 800, 1000};
+        int[] tamanos = {100, 200, 300, 400, 500, 600, 700, 800, 1000, 2000, 5000, 10000, 20000, 50000};
         int casos = 1000;
         long nn = 0;
         for (int N : tamanos) {
